@@ -1,47 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Burp Extension Tester</title>
+    <title>Smart Exam Solver</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="container">
+    <div class="app-container">
         <header>
-            <h1>Burp Extension Tester</h1>
-            <p>Send JSON requests to test your Burp Suite extension.</p>
+            <div class="logo">
+                <span class="icon">✨</span>
+                <h1>Smart Exam Solver</h1>
+            </div>
+            <p>Extract questions from JSON and solve them using AI.</p>
         </header>
 
         <main>
-            <div class="card">
-                <h2>Valid Request</h2>
-                <p>Sends a JSON payload matching the <code>exam.json</code> structure (contains <code>data.learnerTestAttemptId</code>).</p>
-                <div class="code-preview" id="valid-preview">
-                    <pre>Loading...</pre>
+            <section class="config-section">
+                <div class="input-group">
+                    <label for="api-key">OpenAI API Key</label>
+                    <input type="password" id="api-key" placeholder="sk-..." autocomplete="off">
+                    <p class="hint">Your key is stored locally in your browser only.</p>
                 </div>
-                <button id="btn-valid" class="btn btn-primary">Send Valid Request</button>
-            </div>
 
-            <div class="card">
-                <h2>Invalid Request</h2>
-                <p>Sends a JSON payload that does <strong>NOT</strong> match the structure.</p>
-                <div class="s
-                <button id="btn-invalid" class="btn btn-secondary">Send Invalid Request</button>
-            </div>
+                <div class="input-group">
+                    <label for="json-input">Exam JSON Data</label>
+                    <textarea id="json-input"
+                        placeholder="Paste the content of your exam_request.json here..."></textarea>
+                </div>
+
+                <button id="btn-solve" class="btn-primary">
+                    <span class="btn-text">Extract & Solve</span>
+                    <span class="loader hidden"></span>
+                </button>
+            </section>
+
+            <section id="results-section" class="results-section hidden">
+                <div class="results-header">
+                    <h2>Solved Questions <span id="question-count" class="badge">0</span></h2>
+                    <button id="btn-clear" class="btn-text">Clear</button>
+                </div>
+                <div id="questions-container" class="questions-grid">
+                    <!-- Questions will be injected here -->
+                </div>
+            </section>
         </main>
-
-        <div id="status-log" class="status-log">
-            <h3>Activity Log</h3>
-            <div id="log-content"></div>
-        </div>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>
-
-
-
